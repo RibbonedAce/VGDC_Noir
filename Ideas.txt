@@ -1,0 +1,25 @@
+Detective:
+Controls:
+W: Looks Up/Climb Ladders
+A: Move Left
+S: Crouch/Go Down Ladders/Look Down
+D: Move Right
+Space: Jump
+E: Interact/Activate
+J: Access Journal
+esc: Pause Menu
+L-shift: To Transform to shadow and vice versa
+
+Shadow:
+Can only move a radius away from the Detective. Can pass through lights unlike the Detective. Can execute(?) enemies. (Controls Are essentially the same)
+
+Detective:
+All base movements, and is the only one who can interact with story objects.
+
+
+Enemies:
+Movement:
+Move back and forth on a fixed path. And follow if sighted, but stop pursuit if obstacle in the way/get out of a certain radius.
+
+
+
