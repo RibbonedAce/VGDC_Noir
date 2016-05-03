@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour {
     public int jumpHeight;
     public float gravity;
     public float climbSpeed;
-    private bool onGround = false;
+    public static bool onGround = false;
     public static bool onLadder = false;
     private bool isCrouching = false;
     private Animator _animator;
@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour {
         if (onLadder)
         {
             isCrouching = false;
+            onGround = false;
 
             _rigidbody.gravityScale = 0;
 
@@ -68,7 +69,7 @@ public class PlayerMovement : MonoBehaviour {
 
     void OnCollisionStay2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Floor"))
+        if (other.gameObject.CompareTag("Floor") && !onLadder)
         {
             onGround = true;
         }
