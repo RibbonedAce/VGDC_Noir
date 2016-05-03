@@ -8,21 +8,27 @@ public class PlayerMovement : MonoBehaviour {
     public float climbSpeed;
     private bool onGround = false;
     public static bool onLadder = false;
+    private bool isCrouching = false;
+    private Animator _animator;
 
 	// Use this for initialization
 	void Start ()
     {
-	    
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-        Debug.Log(onLadder);
+        _animator = gameObject.GetComponent<Animator>();
+    }
 
+    // Update is called once per frame
+    void Update ()
+    {
         Rigidbody2D _rigidbody = gameObject.GetComponent<Rigidbody2D>();
+
+        Debug.Log(_animator.GetCurrentAnimatorStateInfo(0));
+        Debug.Log(isCrouching);
+
         if (onLadder)
         {
+            isCrouching = false;
+
             _rigidbody.gravityScale = 0;
 
             if (Input.GetAxis("Vertical") != 0)
@@ -33,6 +39,15 @@ public class PlayerMovement : MonoBehaviour {
         else
         {
             _rigidbody.gravityScale = gravity;
+
+            if (Input.GetAxis("Vertical") == -1)
+            {
+                isCrouching = true;
+            }
+            else
+            {
+                isCrouching = false;
+            }
         }
 
 	    if (Input.GetAxis("Horizontal") != 0)
@@ -47,6 +62,8 @@ public class PlayerMovement : MonoBehaviour {
         }
 
         transform.rotation = Quaternion.Euler(0, 0, 0);
+
+        _animator.SetBool("Crouching", isCrouching);
 	}
 
     void OnCollisionStay2D(Collision2D other)
