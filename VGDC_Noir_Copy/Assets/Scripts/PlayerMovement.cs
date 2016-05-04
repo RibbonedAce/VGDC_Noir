@@ -8,8 +8,10 @@ public class PlayerMovement : MonoBehaviour {
     public float climbSpeed;
     public static bool onGround = false;
     public static bool onLadder = false;
-    private bool isCrouching = false;
+    public static bool isCrouching = false;
+    public static bool isLooking = false;
     private Animator _animator;
+    public static bool cameraMoved = false;
 
 	// Use this for initialization
 	void Start ()
@@ -22,12 +24,10 @@ public class PlayerMovement : MonoBehaviour {
     {
         Rigidbody2D _rigidbody = gameObject.GetComponent<Rigidbody2D>();
 
-        Debug.Log(_animator.GetCurrentAnimatorStateInfo(0));
-        Debug.Log(isCrouching);
-
         if (onLadder)
         {
             isCrouching = false;
+            isLooking = false;
             onGround = false;
 
             _rigidbody.gravityScale = 0;
@@ -41,13 +41,31 @@ public class PlayerMovement : MonoBehaviour {
         {
             _rigidbody.gravityScale = gravity;
 
-            if (Input.GetAxis("Vertical") == -1)
+            if (Input.GetAxis("Vertical") == -1 && onGround)
             {
+                isLooking = false;
                 isCrouching = true;
+
+                if (Input.GetAxis("Horizontal") != 0)
+                {
+                    cameraMoved = true;
+                }
+            }
+            else if (Input.GetAxis("Vertical") == 1 && onGround)
+            {
+                isCrouching = false;
+                isLooking = true;
+
+                if (Input.GetAxis("Horizontal") != 0)
+                {
+                    cameraMoved = true;
+                }
             }
             else
             {
                 isCrouching = false;
+                isLooking = false;
+                cameraMoved = false;
             }
         }
 
@@ -60,11 +78,16 @@ public class PlayerMovement : MonoBehaviour {
         {
             gameObject.GetComponent<Rigidbody2D>().AddForce(Vector3.up * jumpHeight);
             onGround = false;
+            isCrouching = false;
+            isLooking = false;
+
+            GameObject.FindWithTag("MainCamera").GetComponent<PlayerTracking>().reset();
         }
 
         transform.rotation = Quaternion.Euler(0, 0, 0);
 
         _animator.SetBool("Crouching", isCrouching);
+        _animator.SetBool("Looking", isLooking);
 	}
 
     void OnCollisionStay2D(Collision2D other)
