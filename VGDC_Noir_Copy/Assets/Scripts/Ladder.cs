@@ -41,7 +41,7 @@ public class Ladder : MonoBehaviour {
 
     void SnapPlayer (GameObject player)
     {
-        player.transform.position = new Vector3(transform.position.x, player.transform.position.y, 0);
+        player.transform.position = new Vector3(transform.position.x, player.transform.position.y, player.transform.position.z);
 
         player.GetComponent<Rigidbody2D>().AddForce(-player.GetComponent<Rigidbody2D>().velocity * 200);
     }

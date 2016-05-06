@@ -10,17 +10,18 @@ public class PlayerTracking : MonoBehaviour {
     public float upShiftMax;
     public float downShiftMax;
     private float delay;
+    public static string tagSearch = "PlayerCharacter";
 
     // Use this for initialization
     void Start ()
     {
-        player = GameObject.FindWithTag("PlayerCharacter");
+        
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        
+        player = GameObject.FindWithTag(tagSearch);
 
         if (PlayerMovement.isCrouching && !PlayerMovement.cameraMoved && PlayerMovement.onGround)
         {
