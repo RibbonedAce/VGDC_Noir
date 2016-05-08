@@ -44,5 +44,7 @@ public class Switch : MonoBehaviour {
                 PlayerTracking.tagSearch = "Shadow";
             }
         }
-	}
+
+        shadow.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1 - difference / (2 * maxDistance));
+	} 
 }
