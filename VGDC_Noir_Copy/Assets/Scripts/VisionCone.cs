@@ -18,8 +18,6 @@ public class VisionCone : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("triggered");
-
         if (other.CompareTag("PlayerCharacter"))
         {
             detectsPlayer = true;

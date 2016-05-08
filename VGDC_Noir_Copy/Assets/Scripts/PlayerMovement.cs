@@ -16,13 +16,13 @@ public class PlayerMovement : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-        _animator = gameObject.GetComponent<Animator>();
+        _animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update ()
     {
-        Rigidbody2D _rigidbody = gameObject.GetComponent<Rigidbody2D>();
+        Rigidbody2D _rigidbody = GetComponent<Rigidbody2D>();
 
         if (onLadder)
         {
@@ -76,7 +76,7 @@ public class PlayerMovement : MonoBehaviour {
 
         if (Input.GetButtonDown("Jump") && onGround)
         {
-            gameObject.GetComponent<Rigidbody2D>().AddForce(Vector3.up * jumpHeight);
+            GetComponent<Rigidbody2D>().AddForce(Vector3.up * jumpHeight);
             onGround = false;
             isCrouching = false;
             isLooking = false;
@@ -95,6 +95,14 @@ public class PlayerMovement : MonoBehaviour {
         if (other.gameObject.CompareTag("Floor") && !onLadder)
         {
             onGround = true;
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Floor"))
+        {
+            onGround = false;
         }
     }
 }

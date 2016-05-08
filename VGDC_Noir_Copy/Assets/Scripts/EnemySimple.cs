@@ -8,20 +8,23 @@ public class EnemySimple : MonoBehaviour {
     public bool startsLeft;
     private bool goingLeft;
     public float speed;
+    public float pacePause;
 
 	// Use this for initialization
 	void Start ()
     {
-        paceTime = paceLength;
+        paceTime = paceLength / speed;
         goingLeft = startsLeft;
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        Animator _animator = gameObject.GetComponent<Animator>();
+        Animator _animator = GetComponent<Animator>();
 
-        VisionCone cone = gameObject.GetComponentInChildren<VisionCone>();
+        VisionCone cone = GetComponentInChildren<VisionCone>();
+
+        Transform shadow = GameObject.FindWithTag("Shadow").transform;
 
         if (cone.detectsPlayer)
         {
@@ -33,14 +36,17 @@ public class EnemySimple : MonoBehaviour {
             if (paceTime >= 0)
             {
                 paceTime -= Time.deltaTime;
+                transform.Translate(Vector3.left * Time.deltaTime * speed);
+            }
+            else if (paceTime <= 0 && paceTime >= -pacePause)
+            {
+                paceTime -= Time.deltaTime;
             }
             else
             {
                 goingLeft = !goingLeft;
-                paceTime = paceLength;
+                paceTime = paceLength / speed;
             }
-
-            transform.Translate(Vector3.left * Time.deltaTime * speed);
 
             if (goingLeft)
             {
@@ -50,6 +56,11 @@ public class EnemySimple : MonoBehaviour {
             {
                 transform.rotation = Quaternion.Euler(0, 0, 180);
             }
+        }
+
+        if (Mathf.Abs(shadow.position.x - transform.position.x) < 0.5 && transform.position.y - shadow.position.y <= 0.5f + shadow.localScale.y + transform.localScale.y && Input.GetButtonDown("Kill"))
+        {
+            Destroy(gameObject);
         }
 
         _animator.SetBool("Calm", isCalm);

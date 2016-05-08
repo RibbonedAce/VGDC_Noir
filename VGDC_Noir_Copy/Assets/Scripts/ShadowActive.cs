@@ -2,17 +2,21 @@
 using System.Collections;
 
 public class ShadowActive : MonoBehaviour {
+    public static bool inWall = false;
+    private GameObject master;
 
 	// Use this for initialization
 	void Start ()
     {
-	
+        master = GameObject.FindWithTag("PlayerCharacter");
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-        SpriteRenderer _sprite = gameObject.GetComponent<SpriteRenderer>();
+        PublicFunctions.PhaseThruTag(gameObject, new string[] { "Wall", "Floor", "PlayerCharacter" });
+
+        SpriteRenderer _sprite = GetComponent<SpriteRenderer>();
 
         if (PlayerMovement.onGround)
         {
@@ -25,7 +29,7 @@ public class ShadowActive : MonoBehaviour {
 
         if (!Switch.isShadow)
         {
-            transform.localPosition = new Vector3(0, -1.5f, transform.localPosition.z);
+            transform.position = master.transform.position + new Vector3(0, -1.5f, 0);
         }
     }
 }

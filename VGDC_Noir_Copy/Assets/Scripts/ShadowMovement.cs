@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class ShadowMovement : MonoBehaviour {
+    public float speed;
 
 	// Use this for initialization
 	void Start ()
@@ -14,7 +15,7 @@ public class ShadowMovement : MonoBehaviour {
     {
 	    if (Input.GetAxis("Horizontal") != 0)
         {
-            transform.Translate(Vector3.right * Input.GetAxis("Horizontal") * Time.deltaTime);
+            transform.Translate(Vector3.right * Input.GetAxis("Horizontal") * speed * Time.deltaTime);
         }
 	}
 }
