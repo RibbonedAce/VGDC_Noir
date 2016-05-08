@@ -3,6 +3,7 @@ using System.Collections;
 
 public class ShadowMovement : MonoBehaviour {
     public float speed;
+    public static bool isMoving;
 
 	// Use this for initialization
 	void Start ()
@@ -13,9 +14,19 @@ public class ShadowMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-	    if (Input.GetAxis("Horizontal") != 0)
+	    if (Input.GetAxis("Horizontal") != 0 && !ShadowActive.inWall)
         {
             transform.Translate(Vector3.right * Input.GetAxis("Horizontal") * speed * Time.deltaTime);
+            isMoving = true;
         }
-	}
+        else if (Input.GetAxis("Vertical") != 0 && ShadowActive.inWall)
+        {
+            transform.Translate(Vector3.right * Input.GetAxis("Vertical") * speed * Time.deltaTime);
+            isMoving = true;
+        }
+        else
+        {
+            isMoving = false;
+        }
+    }
 }

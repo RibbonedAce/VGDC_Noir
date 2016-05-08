@@ -22,5 +22,10 @@ public class VisionCone : MonoBehaviour {
         {
             detectsPlayer = true;
         }
+
+        if (other.CompareTag("Shadow") && ShadowMovement.isMoving)
+        {
+            detectsPlayer = true;
+        }
     }
 }

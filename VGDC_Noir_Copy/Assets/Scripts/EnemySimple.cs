@@ -38,7 +38,7 @@ public class EnemySimple : MonoBehaviour {
                 paceTime -= Time.deltaTime;
                 transform.Translate(Vector3.left * Time.deltaTime * speed);
             }
-            else if (paceTime <= 0 && paceTime >= -pacePause)
+            else if (paceTime < 0 && paceTime >= -pacePause)
             {
                 paceTime -= Time.deltaTime;
             }
