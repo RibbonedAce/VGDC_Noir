@@ -23,10 +23,8 @@ public class Switch : MonoBehaviour {
 
         if (Input.GetButtonDown("Switch") || difference >= maxDistance || (isShadow && !Lighting.shadowInLight))
         {
-            Debug.Log("Switched");
             if (isShadow)
             {
-                Debug.Log("To Human");
                 isShadow = false;
 
                 shadowMove.enabled = false;
@@ -37,7 +35,6 @@ public class Switch : MonoBehaviour {
             }
             else if (PlayerMovement.onGround && !isShadow)
             {
-                Debug.Log("To Shadow");
                 isShadow = true;
 
                 movement.enabled = false;

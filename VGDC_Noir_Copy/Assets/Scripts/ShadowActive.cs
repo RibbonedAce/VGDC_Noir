@@ -31,5 +31,7 @@ public class ShadowActive : MonoBehaviour {
         {
             transform.position = master.transform.position + new Vector3(0, -1.5f, 0);
         }
+
+        transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 }

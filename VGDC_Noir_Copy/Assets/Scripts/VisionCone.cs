@@ -16,12 +16,23 @@ public class VisionCone : MonoBehaviour {
 	      
 	}
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerStay2D(Collider2D other)
     {
         if ((other.CompareTag("PlayerCharacter") && (Lighting.playerInLight || PlayerMovement.isMoving)) || 
             (other.CompareTag("Shadow") && Lighting.shadowInLight))
         {
+            Debug.Log("Detected");
             detectsPlayer = true;
+        }
+
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("PlayerCharacter") || other.CompareTag("Shadow"))
+        {
+            Debug.Log("Lost Player");
+            detectsPlayer = false;
         }
     }
 }
