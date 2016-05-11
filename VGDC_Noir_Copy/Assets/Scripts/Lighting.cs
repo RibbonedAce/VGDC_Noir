@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class Lighting : MonoBehaviour {
-    public static bool inLight;
+    public static bool playerInLight;
+    public static bool shadowInLight;
 
 	// Use this for initialization
 	void Start ()
@@ -18,17 +19,25 @@ public class Lighting : MonoBehaviour {
 
     void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("PlayerCharacter"))
+        if (other.CompareTag("Shadow"))
         {
-            inLight = true;
+            shadowInLight = true;
+        }
+        if (other.CompareTag("PlayerCharacter"))
+        {
+            playerInLight = true;
         }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("PlayerCharacter"))
+        if (other.CompareTag("Shadow"))
         {
-            inLight = false;
+            shadowInLight = false;
+        }
+        if (other.CompareTag("PlayerCharacter"))
+        {
+            playerInLight = false;
         }
     }
 }

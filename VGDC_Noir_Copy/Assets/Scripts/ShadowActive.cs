@@ -18,7 +18,7 @@ public class ShadowActive : MonoBehaviour {
 
         SpriteRenderer _sprite = GetComponent<SpriteRenderer>();
 
-        if (PlayerMovement.onGround && Lighting.inLight)
+        if (PlayerMovement.onGround)
         {
             _sprite.enabled = true;
         }

@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour {
     public static bool isLooking = false;
     private Animator _animator;
     public static bool cameraMoved = false;
+    public static bool isMoving;
 
 	// Use this for initialization
 	void Start ()
@@ -72,6 +73,15 @@ public class PlayerMovement : MonoBehaviour {
 	    if (Input.GetAxis("Horizontal") != 0)
         {
             transform.Translate(Vector3.right * Time.deltaTime * speed * Input.GetAxis("Horizontal"));
+        }
+
+        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+        {
+            isMoving = true;
+        }
+        else
+        {
+            isMoving = false;
         }
 
         if (Input.GetButtonDown("Jump") && onGround)

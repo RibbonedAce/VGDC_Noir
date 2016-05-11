@@ -18,12 +18,8 @@ public class VisionCone : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("PlayerCharacter"))
-        {
-            detectsPlayer = true;
-        }
-
-        if (other.CompareTag("Shadow") && ShadowMovement.isMoving)
+        if ((other.CompareTag("PlayerCharacter") && (Lighting.playerInLight || PlayerMovement.isMoving)) || 
+            (other.CompareTag("Shadow") && Lighting.shadowInLight))
         {
             detectsPlayer = true;
         }

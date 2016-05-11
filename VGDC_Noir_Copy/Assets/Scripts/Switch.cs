@@ -21,10 +21,12 @@ public class Switch : MonoBehaviour {
         ShadowMovement shadowMove = shadow.GetComponent<ShadowMovement>();
         PlayerMovement movement = GetComponent<PlayerMovement>();
 
-        if (Input.GetButtonDown("Switch") || difference >= maxDistance)
+        if (Input.GetButtonDown("Switch") || difference >= maxDistance || (isShadow && !Lighting.shadowInLight))
         {
+            Debug.Log("Switched");
             if (isShadow)
             {
+                Debug.Log("To Human");
                 isShadow = false;
 
                 shadowMove.enabled = false;
@@ -33,8 +35,9 @@ public class Switch : MonoBehaviour {
 
                 PlayerTracking.tagSearch = "PlayerCharacter";
             }
-            else if (PlayerMovement.onGround)
+            else if (PlayerMovement.onGround && !isShadow)
             {
+                Debug.Log("To Shadow");
                 isShadow = true;
 
                 movement.enabled = false;
@@ -45,6 +48,6 @@ public class Switch : MonoBehaviour {
             }
         }
 
-        shadow.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1 - difference / (2 * maxDistance));
+        shadow.GetComponent<SpriteRenderer>().color = new Color(0.21176470588f, 0.22745098039f, 0.25882352941f, 1 - difference / (2 * maxDistance));
 	} 
 }

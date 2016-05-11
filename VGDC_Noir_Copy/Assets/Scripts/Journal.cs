@@ -3,8 +3,8 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class Journal : MonoBehaviour {
-    private bool inJournal;
-    private bool paused;
+    private bool inJournal = false;
+    private bool paused = false;
 
 	// Use this for initialization
 	void Start ()
@@ -20,30 +20,35 @@ public class Journal : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.J) && !paused)
         {
             inJournal = !inJournal;
+            if (inJournal)
+            {
+                GetComponent<PlayerMovement>().enabled = false;
+                journalText.text = "Journal Opened";
+                Time.timeScale = 0;
+            }
+            else
+            {
+                GetComponent<PlayerMovement>().enabled = true;
+                journalText.text = "";
+                Time.timeScale = 1;
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Escape) && !inJournal)
         {
             paused = !paused;
-        }
-
-        if (inJournal && !paused)
-        {
-            GetComponent<PlayerMovement>().enabled = false;
-            journalText.text = "Journal Opened";
-            Time.timeScale = 0;
-        }
-        else if (paused && !inJournal)
-        {
-            GetComponent<PlayerMovement>().enabled = false;
-            journalText.text = "Game Paused";
-            Time.timeScale = 0;
-        }
-        else
-        {
-            GetComponent<PlayerMovement>().enabled = true;
-            journalText.text = "";
-            Time.timeScale = 1;
+            if (paused && !inJournal)
+            {
+                GetComponent<PlayerMovement>().enabled = false;
+                journalText.text = "Game Paused";
+                Time.timeScale = 0;
+            }
+            else
+            {
+                GetComponent<PlayerMovement>().enabled = true;
+                journalText.text = "";
+                Time.timeScale = 1;
+            }
         }
     }
 }
