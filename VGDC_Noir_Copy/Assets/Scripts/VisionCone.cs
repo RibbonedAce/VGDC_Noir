@@ -21,7 +21,6 @@ public class VisionCone : MonoBehaviour {
         if ((other.CompareTag("PlayerCharacter") && (Lighting.playerInLight || PlayerMovement.isMoving)) || 
             (other.CompareTag("Shadow") && Lighting.shadowInLight))
         {
-            Debug.Log("Detected");
             detectsPlayer = true;
         }
 
@@ -31,7 +30,6 @@ public class VisionCone : MonoBehaviour {
     {
         if (other.CompareTag("PlayerCharacter") || other.CompareTag("Shadow"))
         {
-            Debug.Log("Lost Player");
             detectsPlayer = false;
         }
     }
