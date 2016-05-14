@@ -87,6 +87,11 @@ public class EnemySimple : MonoBehaviour {
         if (other.gameObject.CompareTag("PlayerCharacter"))
         {
             alertTime = alertDuration;
+
+            if (alertTime > 0)
+            {
+                Condition.lost = true;
+            }
         }
     }
 }
