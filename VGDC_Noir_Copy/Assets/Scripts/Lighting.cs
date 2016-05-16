@@ -4,6 +4,8 @@ using System.Collections;
 public class Lighting : MonoBehaviour {
     public static bool playerInLight;
     public static bool shadowInLight;
+    public static int shadowLightsIn;
+    public static int playerLightsIn;
 
 	// Use this for initialization
 	void Start ()
@@ -14,18 +16,36 @@ public class Lighting : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        Debug.Log(shadowLightsIn);
 
-    }
-
-    void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.CompareTag("Shadow"))
+        if (shadowLightsIn > 0)
         {
             shadowInLight = true;
         }
-        if (other.CompareTag("PlayerCharacter"))
+        else
+        {
+            shadowInLight = false;
+        }
+
+        if (playerLightsIn > 0)
         {
             playerInLight = true;
+        }
+        else
+        {
+            playerInLight = false;
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Shadow"))
+        {
+            shadowLightsIn++;
+        }
+        if (other.CompareTag("PlayerCharacter"))
+        {
+            playerLightsIn++;
         }
     }
 
@@ -33,11 +53,11 @@ public class Lighting : MonoBehaviour {
     {
         if (other.CompareTag("Shadow"))
         {
-            shadowInLight = false;
+            shadowLightsIn--;
         }
         if (other.CompareTag("PlayerCharacter"))
         {
-            playerInLight = false;
+            playerLightsIn--;
         }
     }
 }

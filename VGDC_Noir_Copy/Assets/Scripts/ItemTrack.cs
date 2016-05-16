@@ -15,11 +15,7 @@ public class ItemTrack : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        Debug.Log(items);
-        
         remaining = GameObject.FindGameObjectsWithTag("Interactible").Length;
-        
-        Debug.Log(remaining);
 
         GetComponent<Text>().text = (items - remaining).ToString() + "/" + items.ToString();
 
