@@ -10,6 +10,8 @@ public class EnemySimple : MonoBehaviour {
     public float pacePause;
     public float alertDuration;
     private float alertTime;
+    public GameObject CloseSwitch;
+    private float shadowTime;
 
 	// Use this for initialization
 	void Start ()
@@ -27,13 +29,18 @@ public class EnemySimple : MonoBehaviour {
 
         Transform shadow = GameObject.FindWithTag("Shadow").transform;
         float difference = GameObject.FindWithTag("PlayerCharacter").transform.position.x - transform.position.x;
+        float switchDifference = CloseSwitch.transform.position.x - transform.position.x;
 
         if (cone.detectsPlayer)
         {
             alertTime = alertDuration;
         }
+        if(cone.detectsShadow)
+        {
+            shadowTime = alertDuration;
+        }
 
-        if (alertTime <= 0)
+        if (alertTime <= 0 && shadowTime <= 0)
         {
             if (paceTime >= 0)
             {
@@ -59,7 +66,7 @@ public class EnemySimple : MonoBehaviour {
                 transform.rotation = Quaternion.Euler(0, 0, 180);
             }
         }
-        else
+        else if (alertTime > 0)
         {
             if (difference >= 0)
             {
@@ -73,13 +80,41 @@ public class EnemySimple : MonoBehaviour {
             transform.Translate(Vector3.left * Time.deltaTime * speed);
             alertTime -= Time.deltaTime;
         }
+        else if (shadowTime > 0)
+        {
+            if (switchDifference >= 0)
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 180);
+            }
+            else
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+
+            transform.Translate(Vector3.left * Time.deltaTime * speed);
+            shadowTime -= Time.deltaTime;
+
+            if (Mathf.Abs(switchDifference) < 1)
+            {
+                if (CloseSwitch.GetComponent<LightSwitch>().on && shadowTime > 0)
+                {
+                    CloseSwitch.GetComponent<LightSwitch>().Turn();
+                }
+                else if (!CloseSwitch.GetComponent<LightSwitch>().on && shadowTime <= 0)
+                {
+                    CloseSwitch.GetComponent<LightSwitch>().Turn();
+                }
+            }
+        }
 
         if (Mathf.Abs(shadow.position.x - transform.position.x) < 0.5 && transform.position.y - shadow.position.y <= 0.5f + shadow.localScale.y + transform.localScale.y && Input.GetButtonDown("Kill"))
         {
             Destroy(gameObject);
         }
 
-        _animator.SetBool("Calm", alertTime <= 0);
+        _animator.SetBool("Calm", alertTime <= 0 && shadowTime <= 0);
+        _animator.SetBool("Alert", alertTime > 0);
+        _animator.SetBool("Switching", alertTime <= 0 && shadowTime > 0);
 	}
 
     void OnCollisionEnter2D(Collision2D other)
