@@ -27,10 +27,13 @@ public class LightSwitch: MonoBehaviour {
             if (on)
             {
                 light.GetComponent<Light>().intensity = 8;
+                light.GetComponentInChildren<PolygonCollider2D>().enabled = true;
             }
             else
             {
                 light.GetComponent<Light>().intensity = 0;
+                light.GetComponentInChildren<PolygonCollider2D>().enabled = false;
+                Lighting.shadowLightsIn = 0;
             }
         }
     }
