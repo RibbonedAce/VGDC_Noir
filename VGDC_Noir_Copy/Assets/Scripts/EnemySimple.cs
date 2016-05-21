@@ -12,17 +12,22 @@ public class EnemySimple : MonoBehaviour {
     private float alertTime;
     public GameObject CloseSwitch;
     private float shadowTime;
+    private Vector3 start;
+    private bool breaks = false;
 
 	// Use this for initialization
 	void Start ()
     {
         paceTime = paceLength / speed;
         goingLeft = startsLeft;
+        start = transform.position;
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
+        Debug.Log(breaks);
+
         Animator _animator = GetComponent<Animator>();
 
         VisionCone cone = GetComponentInChildren<VisionCone>();
@@ -34,36 +39,62 @@ public class EnemySimple : MonoBehaviour {
         if (cone.detectsPlayer)
         {
             alertTime = alertDuration;
+            breaks = true;
         }
         if(cone.detectsShadow)
         {
             shadowTime = alertDuration;
+            breaks = true;
         }
 
         if (alertTime <= 0 && shadowTime <= 0)
         {
-            if (paceTime >= 0)
+            if (breaks)
             {
-                paceTime -= Time.deltaTime;
-                transform.Translate(Vector3.left * Time.deltaTime * speed);
-            }
-            else if (paceTime < 0 && paceTime >= -pacePause)
-            {
-                paceTime -= Time.deltaTime;
-            }
-            else
-            {
-                goingLeft = !goingLeft;
-                paceTime = paceLength / speed;
-            }
+                float goOriginal = start.x - transform.position.x;
 
-            if (goingLeft)
-            {
-                transform.rotation = Quaternion.Euler(0, 0, 0);
+                if (goOriginal < -0.1f)
+                {
+                    transform.rotation = Quaternion.Euler(0, 0, 0);
+                    transform.Translate(Vector3.left * Time.deltaTime * speed / 2);
+                }
+                else if (goOriginal > 0.1f)
+                {
+                    transform.rotation = Quaternion.Euler(0, 0, 180);
+                    transform.Translate(Vector3.left * Time.deltaTime * speed / 2);
+                }
+                else
+                {
+                    breaks = false;
+                    goingLeft = startsLeft;
+                    paceTime = paceLength / speed;
+                }
             }
             else
             {
-                transform.rotation = Quaternion.Euler(0, 0, 180);
+                if (paceTime >= 0)
+                {
+                    paceTime -= Time.deltaTime;
+                    transform.Translate(Vector3.left * Time.deltaTime * speed / 2);
+                }
+                else if (paceTime < 0 && paceTime >= -pacePause)
+                {
+                    paceTime -= Time.deltaTime;
+                }
+                else
+                {
+                    goingLeft = !goingLeft;
+                    paceTime = paceLength / speed;
+                }
+
+                if (goingLeft)
+                {
+                    transform.rotation = Quaternion.Euler(0, 0, 0);
+                }
+                else
+                {
+                    transform.rotation = Quaternion.Euler(0, 0, 180);
+                }
             }
         }
         else if (alertTime > 0)
@@ -91,7 +122,11 @@ public class EnemySimple : MonoBehaviour {
                 transform.rotation = Quaternion.Euler(0, 0, 0);
             }
 
-            transform.Translate(Vector3.left * Time.deltaTime * speed);
+            if(CloseSwitch.GetComponent<LightSwitch>().on)
+            {
+                transform.Translate(Vector3.left * Time.deltaTime * speed);
+            }
+
             shadowTime -= Time.deltaTime;
 
             if (Mathf.Abs(switchDifference) < 1)

@@ -16,8 +16,6 @@ public class Lighting : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        Debug.Log(shadowLightsIn);
-
         if (shadowLightsIn > 0)
         {
             shadowInLight = true;

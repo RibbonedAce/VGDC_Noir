@@ -31,25 +31,23 @@ public class VisionCone : MonoBehaviour {
     {
         if (GetComponentInParent<Transform>().rotation == Quaternion.Euler(0, 0, 0))
         {
-            GameObject obstacle = GetFarthest(obstacles, true);
-
-            if (other.transform.position.x > obstacle.transform.position.x)
+            if (obstacles.Count > 0)
             {
-                if ((other.CompareTag("PlayerCharacter") && Lighting.playerInLight))
-                {
-                    detectsPlayer = true;
-                }
-                if (other.CompareTag("Shadow") && Lighting.shadowInLight)
-                {
-                    detectsShadow = true;
-                }
-            } 
-        }
-        else
-        {
-            GameObject obstacle = GetFarthest(obstacles, false);
+                GameObject obstacle = GetFarthest(obstacles, true);
 
-            if (other.transform.position.x < obstacle.transform.position.x)
+                if (other.transform.position.x > obstacle.transform.position.x)
+                {
+                    if ((other.CompareTag("PlayerCharacter") && Lighting.playerInLight))
+                    {
+                        detectsPlayer = true;
+                    }
+                    if (other.CompareTag("Shadow") && Lighting.shadowInLight)
+                    {
+                        detectsShadow = true;
+                    }
+                }
+            }
+            else
             {
                 if ((other.CompareTag("PlayerCharacter") && Lighting.playerInLight))
                 {
@@ -61,7 +59,36 @@ public class VisionCone : MonoBehaviour {
                 }
             }
         }
-        
+        else
+        {
+            if (obstacles.Count > 0)
+            {
+                GameObject obstacle = GetFarthest(obstacles, false);
+
+                if (other.transform.position.x < obstacle.transform.position.x)
+                {
+                    if ((other.CompareTag("PlayerCharacter") && Lighting.playerInLight))
+                    {
+                        detectsPlayer = true;
+                    }
+                    if (other.CompareTag("Shadow") && Lighting.shadowInLight)
+                    {
+                        detectsShadow = true;
+                    }
+                }
+            }
+            else
+            {
+                if ((other.CompareTag("PlayerCharacter") && Lighting.playerInLight))
+                {
+                    detectsPlayer = true;
+                }
+                if (other.CompareTag("Shadow") && Lighting.shadowInLight)
+                {
+                    detectsShadow = true;
+                }
+            }
+        }
     }
 
     void OnTriggerExit2D(Collider2D other)
