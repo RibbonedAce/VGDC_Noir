@@ -20,12 +20,13 @@ public class Ladder : MonoBehaviour {
         if (other.gameObject.CompareTag("PlayerCharacter"))
         {
             SnapPlayer(other.gameObject);
+            PlayerMovement.onLadder = true;
         }
     }
 
     void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("PlayerCharacter"))
+        if (other.gameObject.CompareTag("PlayerCharacter") && Input.GetAxis("Vertical") > 0)
         {
             PlayerMovement.onLadder = true;
         }

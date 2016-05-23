@@ -37,6 +37,14 @@ public class PlayerMovement : MonoBehaviour {
             {
                 transform.Translate(Vector3.up * Time.deltaTime * climbSpeed * Input.GetAxis("Vertical"));
             }
+
+            if (Input.GetButtonDown("Jump"))
+            {
+                onLadder = false;
+                GetComponent<Rigidbody2D>().AddForce(Vector3.up * jumpHeight);
+
+                GameObject.FindWithTag("MainCamera").GetComponent<PlayerTracking>().reset();
+            }
         }
         else
         {
@@ -70,7 +78,7 @@ public class PlayerMovement : MonoBehaviour {
             }
         }
 
-	    if (Input.GetAxis("Horizontal") != 0)
+	    if (Input.GetAxis("Horizontal") != 0 && !onLadder)
         {
             transform.Translate(Vector3.right * Time.deltaTime * speed * Input.GetAxis("Horizontal"));
         }
