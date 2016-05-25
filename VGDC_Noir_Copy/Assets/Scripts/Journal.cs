@@ -15,7 +15,10 @@ public class Journal : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        Text journalText = GameObject.Find("Journal Text").GetComponent<Text>();
+        Image journal = GameObject.Find("Journal Book").GetComponent<Image>();
+        Text pauseText = GameObject.Find("Pause Text").GetComponent<Text>();
+        Text journalTextL = GameObject.Find("Journal Text L").GetComponent<Text>();
+        Text journalTextR = GameObject.Find("Journal Text R").GetComponent<Text>();
 
         if (Input.GetKeyDown(KeyCode.J) && !paused)
         {
@@ -23,13 +26,17 @@ public class Journal : MonoBehaviour {
             if (inJournal)
             {
                 GetComponent<PlayerMovement>().enabled = false;
-                journalText.text = "Journal Opened";
+                journalTextL.text = "I need to find clues to rescue this girl. She left behind a coin while they dragged her off, but guards are patrolling the area.";
+                journalTextR.text = "Objectvies:\n1.Don't get caught\n2.Retrieve the coin";
+                journal.enabled = true;
                 Time.timeScale = 0;
             }
             else
             {
                 GetComponent<PlayerMovement>().enabled = true;
-                journalText.text = "";
+                journalTextL.text = "";
+                journalTextR.text = "";
+                journal.enabled = false;
                 Time.timeScale = 1;
             }
         }
@@ -40,13 +47,13 @@ public class Journal : MonoBehaviour {
             if (paused && !inJournal)
             {
                 GetComponent<PlayerMovement>().enabled = false;
-                journalText.text = "Game Paused";
+                pauseText.text = "Game Paused";
                 Time.timeScale = 0;
             }
             else
             {
                 GetComponent<PlayerMovement>().enabled = true;
-                journalText.text = "";
+                pauseText.text = "";
                 Time.timeScale = 1;
             }
         }
