@@ -14,6 +14,7 @@ public class EnemySimple : MonoBehaviour {
     private float shadowTime;
     private Vector3 start;
     private bool breaks = false;
+    public static float jumpHeight = 2000;
 
 	// Use this for initialization
 	void Start ()
