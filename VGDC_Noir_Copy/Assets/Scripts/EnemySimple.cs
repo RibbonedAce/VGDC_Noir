@@ -100,16 +100,18 @@ public class EnemySimple : MonoBehaviour {
         }
         else if (alertTime > 0)
         {
-            if (difference >= 0)
+            if (difference >= 0.5)
             {
                 transform.rotation = Quaternion.Euler(0, 0, 180);
+                transform.Translate(Vector3.left * Time.deltaTime * speed);
             }
-            else
+            else if (difference <= -0.5)
             {
                 transform.rotation = Quaternion.Euler(0, 0, 0);
+                transform.Translate(Vector3.left * Time.deltaTime * speed);
             }
 
-            transform.Translate(Vector3.left * Time.deltaTime * speed);
+            
             alertTime -= Time.deltaTime;
         }
         else if (shadowTime > 0)
