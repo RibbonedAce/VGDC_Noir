@@ -24,7 +24,7 @@ public class VisionCone : MonoBehaviour {
         if (other.CompareTag("Wall"))
         {
             obstacles.Add(other.gameObject);
-        }
+        } // Detect if a wall is in the way
     }
 
     void OnTriggerStay2D(Collider2D other)
@@ -46,7 +46,7 @@ public class VisionCone : MonoBehaviour {
                         detectsShadow = true;
                     }
                 }
-            }
+            } // Don't detect player/shadow if no walls in way
             else
             {
                 if ((other.CompareTag("PlayerCharacter") && Lighting.playerInLight))
@@ -57,7 +57,7 @@ public class VisionCone : MonoBehaviour {
                 {
                     detectsShadow = true;
                 }
-            }
+            } // Detect player/shadow
         }
         else
         {
@@ -76,7 +76,7 @@ public class VisionCone : MonoBehaviour {
                         detectsShadow = true;
                     }
                 }
-            }
+            } // Don't detect player/shadow if no walls in way
             else
             {
                 if ((other.CompareTag("PlayerCharacter") && Lighting.playerInLight))
@@ -87,7 +87,7 @@ public class VisionCone : MonoBehaviour {
                 {
                     detectsShadow = true;
                 }
-            }
+            } // Detect player/shadow
         }
     }
 
@@ -105,7 +105,7 @@ public class VisionCone : MonoBehaviour {
         {
             obstacles.Remove(other.gameObject);
         }
-    }
+    } // Lose sight of player
 
     GameObject GetFarthest(List<GameObject> objects, bool positive)
     {
@@ -121,5 +121,5 @@ public class VisionCone : MonoBehaviour {
         }
 
         return result;
-    }
+    } // Get farthest wall in way of seeing player
 }

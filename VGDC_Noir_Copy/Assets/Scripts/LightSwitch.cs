@@ -16,7 +16,7 @@ public class LightSwitch: MonoBehaviour {
     {
         Animator _animator = GetComponent<Animator>();
         _animator.SetBool("On", on);
-	}
+	} // set on position
 
     public void Turn()
     {
@@ -28,13 +28,13 @@ public class LightSwitch: MonoBehaviour {
             {
                 light.GetComponent<Light>().intensity = 8;
                 light.GetComponentInChildren<PolygonCollider2D>().enabled = true;
-            }
+            } // turn off
             else
             {
                 light.GetComponent<Light>().intensity = 0;
                 light.GetComponentInChildren<PolygonCollider2D>().enabled = false;
                 Lighting.shadowLightsIn = 0;
-            }
+            } // turn on
         }
     }
 }

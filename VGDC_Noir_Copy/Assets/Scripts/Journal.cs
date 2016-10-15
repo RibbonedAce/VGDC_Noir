@@ -30,7 +30,7 @@ public class Journal : MonoBehaviour {
                 journalTextR.text = "Objectvies:\n1.Don't get caught\n2.Retrieve the coin";
                 journal.enabled = true;
                 Time.timeScale = 0;
-            }
+            } // pause game and show journal
             else
             {
                 GetComponent<PlayerMovement>().enabled = true;
@@ -38,7 +38,7 @@ public class Journal : MonoBehaviour {
                 journalTextR.text = "";
                 journal.enabled = false;
                 Time.timeScale = 1;
-            }
+            } // unpause game and close journal
         }
 
         if (Input.GetKeyDown(KeyCode.Escape) && !inJournal)
@@ -49,13 +49,13 @@ public class Journal : MonoBehaviour {
                 GetComponent<PlayerMovement>().enabled = false;
                 pauseText.text = "Game Paused";
                 Time.timeScale = 0;
-            }
+            } // pause game (not journal)
             else
             {
                 GetComponent<PlayerMovement>().enabled = true;
                 pauseText.text = "";
                 Time.timeScale = 1;
-            }
+            } // unpause game (not journal)
         }
     }
 }

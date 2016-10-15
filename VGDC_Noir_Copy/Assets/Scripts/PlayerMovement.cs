@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour {
             if (Input.GetAxis("Vertical") != 0)
             {
                 transform.Translate(Vector3.up * Time.deltaTime * climbSpeed * Input.GetAxis("Vertical"));
-            }
+            } // Climb up ladder
 
             if (Input.GetButtonDown("Jump"))
             {
@@ -44,8 +44,8 @@ public class PlayerMovement : MonoBehaviour {
                 GetComponent<Rigidbody2D>().AddForce(Vector3.up * jumpHeight);
 
                 GameObject.FindWithTag("MainCamera").GetComponent<PlayerTracking>().reset();
-            }
-        }
+            } // Jump off ladder
+        } // Player behavior on ladder
         else
         {
             _rigidbody.gravityScale = gravity;
@@ -59,7 +59,7 @@ public class PlayerMovement : MonoBehaviour {
                 {
                     cameraMoved = true;
                 }
-            }
+            } // Crouch and pan camera down
             else if (Input.GetAxis("Vertical") == 1 && onGround)
             {
                 isCrouching = false;
@@ -69,7 +69,7 @@ public class PlayerMovement : MonoBehaviour {
                 {
                     cameraMoved = true;
                 }
-            }
+            } // Pan camera up
             else
             {
                 isCrouching = false;
@@ -81,7 +81,7 @@ public class PlayerMovement : MonoBehaviour {
 	    if (Input.GetAxis("Horizontal") != 0 && !onLadder)
         {
             transform.Translate(Vector3.right * Time.deltaTime * speed * Input.GetAxis("Horizontal"));
-        }
+        } // Move
 
         if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
         {
@@ -100,7 +100,7 @@ public class PlayerMovement : MonoBehaviour {
             isLooking = false;
 
             GameObject.FindWithTag("MainCamera").GetComponent<PlayerTracking>().reset();
-        }
+        } // jump
 
         transform.rotation = Quaternion.Euler(0, 0, 0);
 
@@ -113,7 +113,7 @@ public class PlayerMovement : MonoBehaviour {
         if (other.gameObject.CompareTag("Floor") && !onLadder)
         {
             onGround = true;
-        }
+        } // Detect if on ground
     }
 
     void OnCollisionExit2D(Collision2D other)
@@ -121,6 +121,6 @@ public class PlayerMovement : MonoBehaviour {
         if (other.gameObject.CompareTag("Floor"))
         {
             onGround = false;
-        }
+        } // Detect if not on ground
     }
 }

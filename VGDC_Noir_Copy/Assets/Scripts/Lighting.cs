@@ -44,7 +44,7 @@ public class Lighting : MonoBehaviour {
         if (other.CompareTag("PlayerCharacter"))
         {
             playerLightsIn++;
-        }
+        } 
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -58,4 +58,4 @@ public class Lighting : MonoBehaviour {
             playerLightsIn--;
         }
     }
-}
+} // track the amount of lighting objects that the player/shadow is in

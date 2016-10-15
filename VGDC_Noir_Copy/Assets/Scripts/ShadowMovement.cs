@@ -18,12 +18,12 @@ public class ShadowMovement : MonoBehaviour {
         {
             transform.Translate(Vector3.right * Input.GetAxis("Horizontal") * speed * Time.deltaTime);
             isMoving = true;
-        }
+        } // Move on a floor/ceiling
         else if (Input.GetAxis("Vertical") != 0 && ShadowActive.inWall)
         {
             transform.Translate(Vector3.right * Input.GetAxis("Vertical") * speed * Time.deltaTime);
             isMoving = true;
-        }
+        } // Move on a wall
         else
         {
             isMoving = false;

@@ -10,7 +10,7 @@ public class ItemTrack : MonoBehaviour {
 	void Start ()
     {
         items = GameObject.FindGameObjectsWithTag("Interactible").Length;
-	}
+	} // Find amount of certain objects
 	
 	// Update is called once per frame
 	void Update ()
@@ -22,6 +22,6 @@ public class ItemTrack : MonoBehaviour {
         if (remaining == 0)
         {
             Condition.won = true;
-        }
+        } // Win if all objects are collected
 	}
 }

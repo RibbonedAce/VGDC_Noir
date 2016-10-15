@@ -27,7 +27,7 @@ public class SurfaceTransfer : MonoBehaviour {
         {
             connectFloor = false;
         }
-	}
+	} // Set which corner this objects acts as
 	
 	// Update is called once per frame
 	void Update ()
@@ -43,32 +43,34 @@ public class SurfaceTransfer : MonoBehaviour {
 
             Vector3 transferWally = new Vector3(0, wall.transform.localScale.x / 2 - other.transform.localScale.x, 0);
             Vector3 transferFloory = new Vector3(0, (1 - floor.transform.localScale.y) / 2, 0);
+            // Set connected ceiling
             if (connectFloor)
             {
                 transferWally = new Vector3(0, other.transform.localScale.x - wall.transform.localScale.x / 2, 0);
                 transferFloory = new Vector3(0, (floor.transform.localScale.y - 1) / 2, 0);
-            }
+            } // Set connected floor if applicable
 
             Vector3 transferFloorx = new Vector3(other.transform.localScale.x - floor.transform.localScale.x / 2, 0, 0);
             Vector3 transferWallx = new Vector3((1 - wall.transform.localScale.y) / 2, 0, 0);
+            // Set connected right wall
             if (connectLeft)
             {
                 transferFloorx = new Vector3(floor.transform.localScale.x / 2 - other.transform.localScale.x, 0, 0);
                 transferWallx = new Vector3((wall.transform.localScale.y - 1) / 2, 0, 0);
-            }
+            } // Set connected left wall if applicable
 
             if (ShadowActive.inWall)
             {
                 other.transform.position = wall.transform.position + transferWallx + transferWally;
 
                 other.transform.rotation = wall.transform.rotation;
-            }
+            } // Transfer shadow to wall
             else
             {
                 other.transform.position = floor.transform.position + transferFloorx + transferFloory;
 
                 other.transform.rotation = floor.transform.rotation;
-            }
+            } // Transfer shadow to floor
         }
     }
 }

@@ -32,7 +32,7 @@ public class Switch : MonoBehaviour {
                 movement.enabled = true;
 
                 PlayerTracking.tagSearch = "PlayerCharacter";
-            }
+            } // Switch to player
             else if (PlayerMovement.onGround && !isShadow)
             {
                 isShadow = true;
@@ -42,9 +42,10 @@ public class Switch : MonoBehaviour {
                 shadowMove.enabled = true;
 
                 PlayerTracking.tagSearch = "Shadow";
-            }
+            } // Switch to shadow
         }
 
-        shadow.GetComponent<SpriteRenderer>().color = new Color(0.21176470588f, 0.22745098039f, 0.25882352941f, 1 - difference / (2 * maxDistance));
+        shadow.GetComponent<SpriteRenderer>().color = new Color(0.21176470588f, 0.22745098039f, 0.25882352941f, 1 - difference / (2 * maxDistance)); 
+        // Shadow color, fades with distance
 	} 
 }

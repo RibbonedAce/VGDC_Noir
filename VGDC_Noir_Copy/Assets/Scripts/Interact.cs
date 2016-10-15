@@ -16,7 +16,7 @@ public class Interact : MonoBehaviour {
         if (Input.GetButtonDown("Interact") && canInteract)
         {
             Destroy(gameObject);
-        }
+        } // Make object vanish
     }
 
     void OnTriggerEnter2D (Collider2D other)
@@ -24,7 +24,7 @@ public class Interact : MonoBehaviour {
         if (other.CompareTag("PlayerCharacter"))
         {
             canInteract = true;
-        }
+        } // Interaction trigger
     }
 
     void OnTriggerExit2D (Collider2D other)
@@ -32,6 +32,6 @@ public class Interact : MonoBehaviour {
         if (other.CompareTag("PlayerCharacter"))
         {
             canInteract = false;
-        }
+        }  // Exit interaction trigger
     }
 }

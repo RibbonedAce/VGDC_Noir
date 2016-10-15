@@ -9,6 +9,6 @@ public class SwitchInteract : Interact {
         if (Input.GetButtonDown("Interact") && canInteract)
         {
             GetComponent<LightSwitch>().Turn();
-        }
+        } // Tell switch to turn on
     }
 }

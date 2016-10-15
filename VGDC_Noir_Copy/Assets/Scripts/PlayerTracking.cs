@@ -52,12 +52,12 @@ public class PlayerTracking : MonoBehaviour {
                 NoVertical();
             }
         }
-	}
+	} // Track when to move camera
 
     void TrackVertical ()
     {
         transform.position = new Vector3(player.transform.position.x + baseHorizontal, player.transform.position.y + baseVertical, -10);
-    }
+    } // Move camera upon landing on new floor
 
     void NoVertical ()
     {
@@ -70,7 +70,7 @@ public class PlayerTracking : MonoBehaviour {
         {
             transform.Translate(Vector3.down * Time.deltaTime * shiftSpeed);
         }
-    }
+    }  // Move camera down
 
     void shiftUp ()
     {
@@ -78,7 +78,7 @@ public class PlayerTracking : MonoBehaviour {
         {
             transform.Translate(Vector3.up * Time.deltaTime * shiftSpeed);
         }
-    }
+    }  // Move camera up
 
     public void reset()
     {
