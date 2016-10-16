@@ -26,8 +26,8 @@ public class Journal : MonoBehaviour {
             if (inJournal)
             {
                 GetComponent<PlayerMovement>().enabled = false;
-                journalTextL.text = "I need to find clues to rescue this girl. She left behind a coin while they dragged her off, but guards are patrolling the area.";
-                journalTextR.text = "Objectvies:\n1.Don't get caught\n2.Retrieve the coin";
+                journalTextL.text = "A/D: move\nSpace: jump\nW/S: climb ladder\nLShift: switch to shadow\nE: interact\nR: kill as shadow";
+                journalTextR.text = "Collect the coin to end the level\nDon't get caught by guards\nGuards will turn off lights if shadow is seen\nYour shadow needs to be in light to move";
                 journal.enabled = true;
                 Time.timeScale = 0;
             } // pause game and show journal

@@ -25,7 +25,7 @@ public class Condition : MonoBehaviour {
 
         if (won)
         {
-            GameObject.Find("Journal Text").GetComponent<Text>().text = "You won!";
+            GameObject.Find("Journal Text L").GetComponent<Text>().text = "You won!";
 
             Time.timeScale = 0;
         } // win the game

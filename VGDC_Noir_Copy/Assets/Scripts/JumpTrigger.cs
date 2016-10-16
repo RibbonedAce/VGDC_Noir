@@ -21,4 +21,5 @@ public class JumpTrigger : MonoBehaviour {
         {
             other.GetComponent<Rigidbody2D>().AddForce(Vector3.up * EnemySimple.jumpHeight);
         } // make the enemy that touched this jump
+    }
 }
