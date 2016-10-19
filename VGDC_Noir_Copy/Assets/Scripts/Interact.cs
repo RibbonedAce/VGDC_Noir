@@ -2,6 +2,8 @@
 using System.Collections;
 
 public class Interact : MonoBehaviour {
+    public string LeftText;
+    public string RightText;
     public bool canInteract = false;
 
 	// Use this for initialization
@@ -15,6 +17,10 @@ public class Interact : MonoBehaviour {
     {
         if (Input.GetButtonDown("Interact") && canInteract)
         {
+            if (LeftText != "" || RightText != "")
+            {
+                ChangeText();
+            }
             Destroy(gameObject);
         } // Make object vanish
     }
@@ -34,4 +40,10 @@ public class Interact : MonoBehaviour {
             canInteract = false;
         }  // Exit interaction trigger
     }
+
+    void ChangeText()
+    {
+        Journal.setLeftText = LeftText;
+        Journal.setRightText = RightText;
+    }//Change the text of a journal upon opening
 }

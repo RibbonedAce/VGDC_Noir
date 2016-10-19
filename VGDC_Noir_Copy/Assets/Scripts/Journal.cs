@@ -5,6 +5,8 @@ using UnityEngine.UI;
 public class Journal : MonoBehaviour {
     private bool inJournal = false;
     private bool paused = false;
+    public static string setLeftText;
+    public static string setRightText;
 
 	// Use this for initialization
 	void Start ()
@@ -26,8 +28,8 @@ public class Journal : MonoBehaviour {
             if (inJournal)
             {
                 GetComponent<PlayerMovement>().enabled = false;
-                journalTextL.text = "A/D: move\nSpace: jump\nW/S: climb ladder\nLShift: switch to shadow\nE: interact\nR: kill as shadow";
-                journalTextR.text = "Collect the coin to end the level\nDon't get caught by guards\nGuards will turn off lights if shadow is seen\nYour shadow needs to be in light to move";
+                journalTextL.text = setLeftText;
+                journalTextR.text = setRightText;
                 journal.enabled = true;
                 Time.timeScale = 0;
             } // pause game and show journal
