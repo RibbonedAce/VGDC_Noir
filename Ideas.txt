@@ -25,4 +25,12 @@ Abilities:
 Can turn off light if it sees shadow until they are calm.
 Since they can't see players not moving in dark, this could help player get by as well.
 
+To do:
+Make the journal have multiple pages
+Make game objectives add a page to the journal
+
+Bugs:
+Journal can be opened while in shadow, messing up player control
+
+
 
