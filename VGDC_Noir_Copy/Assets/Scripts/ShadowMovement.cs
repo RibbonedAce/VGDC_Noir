@@ -14,19 +14,22 @@ public class ShadowMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-	    if (Input.GetAxis("Horizontal") != 0 && !ShadowActive.inWall)
+        if (SurfaceTransfer.moveTimer <= 0)
         {
-            transform.Translate(Vector3.right * Input.GetAxis("Horizontal") * speed * Time.deltaTime);
-            isMoving = true;
-        } // Move on a floor/ceiling
-        else if (Input.GetAxis("Vertical") != 0 && ShadowActive.inWall)
-        {
-            transform.Translate(Vector3.right * Input.GetAxis("Vertical") * speed * Time.deltaTime);
-            isMoving = true;
-        } // Move on a wall
-        else
-        {
-            isMoving = false;
+	        if (Input.GetAxis("Horizontal") != 0 && !ShadowActive.inWall)
+            {
+                transform.Translate(Vector3.right * Input.GetAxis("Horizontal") * speed * Time.deltaTime);
+                isMoving = true;
+            } // Move on a floor/ceiling
+            else if (Input.GetAxis("Vertical") != 0 && ShadowActive.inWall)
+            {
+                transform.Translate(Vector3.right * Input.GetAxis("Vertical") * speed * Time.deltaTime);
+                isMoving = true;
+            } // Move on a wall
+            else
+            {
+                isMoving = false;
+            }
         }
     }
 }
