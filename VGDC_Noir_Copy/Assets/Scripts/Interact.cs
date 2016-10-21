@@ -19,7 +19,7 @@ public class Interact : MonoBehaviour {
         {
             if (LeftText != "" || RightText != "")
             {
-                ChangeText();
+                AddPage();
             }
             Destroy(gameObject);
         } // Make object vanish
@@ -41,9 +41,9 @@ public class Interact : MonoBehaviour {
         }  // Exit interaction trigger
     }
 
-    void ChangeText()
+    void AddPage()
     {
-        Journal.setLeftText = LeftText;
-        Journal.setRightText = RightText;
+        Journal.pageContent.Add(LeftText);
+        Journal.pageContent.Add(RightText);
     }//Change the text of a journal upon opening
 }

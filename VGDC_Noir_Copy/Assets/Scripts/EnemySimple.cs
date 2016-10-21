@@ -27,8 +27,6 @@ public class EnemySimple : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        Debug.Log(breaks);
-
         Animator _animator = GetComponent<Animator>();
 
         VisionCone cone = GetComponentInChildren<VisionCone>();
