@@ -41,10 +41,10 @@ public class SurfaceTransfer : MonoBehaviour {
 
     void OnCollisionEnter2D (Collision2D other)
     {
-        moveTimer += 1;
-
         if (other.gameObject.CompareTag("Shadow"))
         {
+            moveTimer += 1;
+
             ShadowActive.inWall = !ShadowActive.inWall;
 
             Vector3 transferWally = new Vector3(0, wall.transform.localScale.x / 2 - other.transform.localScale.x - 0.1f, 0);

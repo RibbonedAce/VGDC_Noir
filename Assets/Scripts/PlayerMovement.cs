@@ -90,7 +90,7 @@ public class PlayerMovement : MonoBehaviour {
         else
         {
             isMoving = false;
-        }
+        } // Trigger if player is moving
 
         if (Input.GetButtonDown("Jump") && onGround)
         {

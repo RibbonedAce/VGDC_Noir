@@ -20,7 +20,7 @@ public class Journal : MonoBehaviour {
 
         page = 0;
         // set the default text
-	}
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -31,9 +31,7 @@ public class Journal : MonoBehaviour {
         Text journalTextR = GameObject.Find("Journal Text R").GetComponent<Text>();
         Text leftPageNum = GameObject.Find("PageNumL").GetComponent<Text>();
         Text rightPageNum = GameObject.Find("PageNumR").GetComponent<Text>();
-
-        Debug.Log(page);
-        Debug.Log(pageContent.Count);
+        //set vars
 
         if (Input.GetKeyDown(KeyCode.J) && !paused)
         {
@@ -59,7 +57,6 @@ public class Journal : MonoBehaviour {
 
         if (inJournal)
         {
-            GetComponent<PlayerMovement>().enabled = false;
             journalTextL.text = pageContent[page];
             journalTextR.text = pageContent[page + 1];
             journal.enabled = true;
@@ -81,7 +78,6 @@ public class Journal : MonoBehaviour {
         } // pause game and show journal
         else
         {
-            GetComponent<PlayerMovement>().enabled = true;
             journalTextL.text = "";
             journalTextR.text = "";
             journal.enabled = false;
