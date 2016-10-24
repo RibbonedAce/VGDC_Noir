@@ -14,7 +14,7 @@ public class Journal : MonoBehaviour {
     {
         pageContent = new List<string>();
         pageContent.Add("My Journal");
-        pageContent.Add("");
+        pageContent.Add("Left/right in journal to flip through pages");
         pageContent.Add("A/D: move\nSpace: jump\nE: interact with object");
         pageContent.Add("Don't get spotted by enemies.");
 
@@ -31,6 +31,7 @@ public class Journal : MonoBehaviour {
         Text journalTextR = GameObject.Find("Journal Text R").GetComponent<Text>();
         Text leftPageNum = GameObject.Find("PageNumL").GetComponent<Text>();
         Text rightPageNum = GameObject.Find("PageNumR").GetComponent<Text>();
+        Text tutorialText = GameObject.Find("Tutorial Text").GetComponent<Text>();
         //set vars
 
         if (Input.GetKeyDown(KeyCode.J) && !paused)
@@ -59,6 +60,7 @@ public class Journal : MonoBehaviour {
         {
             journalTextL.text = pageContent[page];
             journalTextR.text = pageContent[page + 1];
+            tutorialText.enabled = false;
             journal.enabled = true;
             Time.timeScale = 0;
 

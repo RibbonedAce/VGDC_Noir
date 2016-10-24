@@ -30,6 +30,7 @@ To do:
 Bugs:
 Journal can be opened while in shadow, messing up player control
 Numerous things after a game restarts from losing
+Random stuttering when moving after transforming into shadow for first time
 
 
 
