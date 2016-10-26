@@ -33,7 +33,7 @@ public class Switch : MonoBehaviour {
 
                 PlayerTracking.tagSearch = "PlayerCharacter";
             } // Switch to player
-            else if (PlayerMovement.onGround && !isShadow)
+            else if (PlayerMovement.onGround && !isShadow && !Journal.inJournal)
             {
                 isShadow = true;
 

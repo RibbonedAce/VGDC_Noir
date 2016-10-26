@@ -1,36 +1,57 @@
+CURRENT IMPLEMENTATIONS:
+
 Detective:
-Controls:
-W: Looks Up/Climb Ladders
-A: Move Left
-S: Crouch/Go Down Ladders/Look Down
-D: Move Right
-Space: Jump
-E: Interact/Activate
-J: Access Journal
-esc: Pause Menu
-L-shift: To Transform to shadow and vice versa
+  Controls:
+    W: Looks Up/Climb Ladders
+    A: Move Left
+    S: Crouch/Go Down Ladders/Look Down
+    D: Move Right
+    Space: Jump
+    E: Interact/Activate
+    J: Access Journal
+    Left: Flip page back in journal
+    Right: Flip page forward in journal
+    esc: Pause Menu
+    L-shift: Switch to shadow
+  Mechanics:
+    If seen by enemy, enemy will give chase
 
 Shadow:
-Can only move a radius away from the Detective. Can pass through lights unlike the Detective. Can execute(?) enemies. (Controls Are essentially the same)
-
-Detective:
-All base movements, and is the only one who can interact with story objects.
-
+  Controls:
+    W: Move up wall
+    A: Move left on floor/ceiling
+    S: Move down wall
+    D: Move right on floor/ceiling
+    R: kill enemy if under them
+    L-shift: Switch back to detective
+  Mechanics: 
+    Can only move a radius away from the Detective before changing back automatically
+    Can only pass through lit areas
+    Can execute enemies while detective can't
+    If enemies see only shadow, they will turn off lights and not give chase
 
 Enemies:
-Movement:
-Move back and forth on a fixed path. And follow if sighted, but stop pursuit if obstacle in the way/get out of a certain radius.
+  Move back and forth on a fixed path
+  Can spot player/shadow with vision cone if no obstacles in the way
+  Alert phase: 
+    Follow player if sees detective
+    Will return to designated path upon calming down
+    Turn of switch if sees shadow (turns back on upon calming down)
+  Kills player in one hit
+  Dies in one hit
 
-Abilities:
-Can turn off light if it sees shadow until they are calm.
-Since they can't see players not moving in dark, this could help player get by as well.
+Misc:
+  Coins are objectives
+  Journal gains pages upon completing objectives
+  Jump waypoints to let enemies jump gaps/up walls
+
+FUTURE PLANS:
 
 To do:
+  Get sprites implemented
 
 Bugs:
-Journal can be opened while in shadow, messing up player control
-Numerous things after a game restarts from losing
-Random stuttering when moving after transforming into shadow for first time
+  Numerous things after a game restarts from losing
 
 
 

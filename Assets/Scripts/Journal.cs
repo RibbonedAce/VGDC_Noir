@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class Journal : MonoBehaviour {
-    private bool inJournal = false;
+    public static bool inJournal = false;
     private bool paused = false;
     public static List<string> pageContent;
     public static int page;
@@ -34,7 +34,7 @@ public class Journal : MonoBehaviour {
         Text tutorialText = GameObject.Find("Tutorial Text").GetComponent<Text>();
         //set vars
 
-        if (Input.GetKeyDown(KeyCode.J) && !paused)
+        if (Input.GetKeyDown(KeyCode.J) && !paused && !Switch.isShadow)
         {
             inJournal = !inJournal;
         }
