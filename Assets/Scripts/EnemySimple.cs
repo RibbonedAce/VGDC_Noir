@@ -9,9 +9,9 @@ public class EnemySimple : MonoBehaviour {
     public float speed;
     public float pacePause;
     public float alertDuration;
-    private float alertTime;
+    public float alertTime;
     public GameObject CloseSwitch;
-    private float shadowTime;
+    public float shadowTime;
     private Vector3 start;
     private bool breaks = false;
     public static float jumpHeight = 2000;

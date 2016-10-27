@@ -19,7 +19,10 @@ public class JumpTrigger : MonoBehaviour {
     {
         if (other.CompareTag("Enemy"))
         {
-            other.GetComponent<Rigidbody2D>().AddForce(Vector3.up * EnemySimple.jumpHeight);
-        } // make the enemy that touched this jump
+            if (other.GetComponent<EnemySimple>().alertTime > 0)
+            {
+                other.GetComponent<Rigidbody2D>().AddForce(Vector3.up * EnemySimple.jumpHeight);
+            } 
+        } // make the enemy that touched this jump if he's alerted
     }
 }
