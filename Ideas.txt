@@ -49,9 +49,10 @@ FUTURE PLANS:
 
 To do:
   Get sprites implemented
+  Balance movement, enemies, etc.
 
 Bugs:
-  Numerous things after a game restarts from losing
+
 
 
 
