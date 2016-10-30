@@ -52,7 +52,9 @@ To do:
   Balance movement, enemies, etc.
 
 Bugs:
-
-
+  Pressing space while in journal queues up a jump
+  Mashing up and jump while on ladder causes player to be launched upward really high
+  Shadow dissappears when jumping
+  Camera snaps when jumping onto higher elevation
 
 
