@@ -17,19 +17,20 @@ public class Ladder : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("PlayerCharacter"))
+        if (other.gameObject.CompareTag("PlayerCharacter") && !PlayerMovement.onGround)
         {
             SnapPlayer(other.gameObject);
             PlayerMovement.onLadder = true;
-        } // snap player onto the ladder
+        } // snap player onto the ladder if they jump into it
     }
 
     void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("PlayerCharacter") && Input.GetAxis("Vertical") > 0)
+        if (other.gameObject.CompareTag("PlayerCharacter") && Input.GetAxis("Vertical") != 0 && other.GetComponent<Rigidbody2D>().velocity.y <= 0)
         {
+            SnapPlayer(other.gameObject);
             PlayerMovement.onLadder = true;
-        } // tell player that he's on a ladder
+        } // snap player if they climb on ladder
     }
 
     void OnTriggerExit2D(Collider2D other)

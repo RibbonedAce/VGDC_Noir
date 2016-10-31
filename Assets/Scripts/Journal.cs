@@ -39,22 +39,30 @@ public class Journal : MonoBehaviour {
             inJournal = !inJournal;
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape) && !inJournal)
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             paused = !paused;
-            if (paused && !inJournal)
-            {
-                GetComponent<PlayerMovement>().enabled = false;
-                pauseText.text = "Game Paused";
-                Time.timeScale = 0;
-            } // pause game (not journal)
-            else
-            {
-                GetComponent<PlayerMovement>().enabled = true;
-                pauseText.text = "";
-                Time.timeScale = 1;
-            } // unpause game (not journal)
         }
+
+        if (paused || inJournal)
+        {
+            GetComponent<PlayerMovement>().enabled = false;
+            Time.timeScale = 0;
+        } // send game to stopped state
+        else
+        {
+            GetComponent<PlayerMovement>().enabled = true;
+            Time.timeScale = 1;
+        } // send game to normal state
+
+        if (paused)
+        {
+            pauseText.text = "Game Paused";
+        } // show pause text
+        else
+        {
+            pauseText.text = "";
+        } // remove pause text
 
         if (inJournal)
         {
@@ -62,7 +70,6 @@ public class Journal : MonoBehaviour {
             journalTextR.text = pageContent[page + 1];
             tutorialText.enabled = false;
             journal.enabled = true;
-            Time.timeScale = 0;
 
             if (Input.GetKeyDown(KeyCode.LeftArrow) && page >= 2)
             {
@@ -77,18 +84,15 @@ public class Journal : MonoBehaviour {
 
             leftPageNum.text = page.ToString();
             rightPageNum.text = (page + 1).ToString();
-        } // pause game and show journal
+        } // show journal and allow journal controls
         else
         {
             journalTextL.text = "";
             journalTextR.text = "";
             journal.enabled = false;
-            Time.timeScale = 1;
 
             leftPageNum.text = "";
             rightPageNum.text = "";
-        } // unpause game and close journal
-
-        
+        } // close journald
     }
 }
