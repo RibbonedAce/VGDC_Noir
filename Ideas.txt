@@ -52,4 +52,4 @@ To do:
   Balance movement, enemies, etc.
 
 Bugs:
-
+  Extreme velocity on terrain will cause player to go through floor.
