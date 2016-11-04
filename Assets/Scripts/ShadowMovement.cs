@@ -14,6 +14,8 @@ public class ShadowMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        Debug.Log(
+
         if (SurfaceTransfer.moveTimer <= 0)
         {
 	        if (Input.GetAxis("Horizontal") != 0 && !ShadowActive.inWall)

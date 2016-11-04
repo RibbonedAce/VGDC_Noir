@@ -37,11 +37,20 @@ public class Journal : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.J) && !paused && !Switch.isShadow)
         {
             inJournal = !inJournal;
+            if (!inJournal)
+            {
+                GetComponent<PlayerMovement>().enabled = true;
+            }
+            
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             paused = !paused;
+            if (!paused)
+            {
+                GetComponent<PlayerMovement>().enabled = true;
+            }
         }
 
         if (paused || inJournal)
@@ -51,7 +60,6 @@ public class Journal : MonoBehaviour {
         } // send game to stopped state
         else
         {
-            GetComponent<PlayerMovement>().enabled = true;
             Time.timeScale = 1;
         } // send game to normal state
 

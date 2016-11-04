@@ -21,6 +21,8 @@ public class Switch : MonoBehaviour {
         ShadowMovement shadowMove = shadow.GetComponent<ShadowMovement>();
         PlayerMovement movement = GetComponent<PlayerMovement>();
 
+        Debug.Log(movement.enabled);
+
         if (Input.GetButtonDown("Switch") || difference >= maxDistance || (isShadow && !Lighting.shadowInLight))
         {
             if (isShadow)
