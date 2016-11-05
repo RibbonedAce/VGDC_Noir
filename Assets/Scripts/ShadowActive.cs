@@ -3,11 +3,12 @@ using System.Collections;
 
 public class ShadowActive : MonoBehaviour {
     public static bool inWall = false;
+    public static GameObject master;
 
 	// Use this for initialization
 	void Start ()
     {
-
+        master = GameObject.FindWithTag("PlayerCharacter");
 	}
 	
 	// Update is called once per frame
@@ -28,8 +29,8 @@ public class ShadowActive : MonoBehaviour {
 
         if (!Switch.isShadow)
         {
-            transform.localPosition = new Vector3(0, -1.5f, 0);
-            transform.localRotation = Quaternion.Euler(0, 0, 0);
+            transform.position = master.transform.position + new Vector3(0, -1.5f, 0);
+            transform.rotation = Quaternion.Euler(0, 0, 0);
             inWall = false;
         } // Put shadow under player
     }
