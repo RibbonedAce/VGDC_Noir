@@ -49,6 +49,8 @@ FUTURE PLANS:
 
 To do:
   Get sprites implemented
+      Add lighting to sprites
+      Add additional sprites for jumping and crouching
   Balance movement, enemies, etc.
 
 Bugs:
