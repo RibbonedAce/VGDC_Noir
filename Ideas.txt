@@ -55,5 +55,4 @@ To do:
   Balance movement, enemies, etc.
 
 Bugs:
-  Extreme velocity on terrain will cause player to go through floor.
-  Holding left as you respawn causes player sprite to face incorrectly
+  Extreme velocity of an object to terrain will make object phase through terrain

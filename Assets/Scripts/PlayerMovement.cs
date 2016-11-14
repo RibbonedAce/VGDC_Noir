@@ -24,6 +24,8 @@ public class PlayerMovement : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
+        Debug.Log(facingRight);
+
         Rigidbody2D _rigidbody = GetComponent<Rigidbody2D>();
 
         if (onLadder)
@@ -93,13 +95,13 @@ public class PlayerMovement : MonoBehaviour {
             isMoving = false;
         } // Trigger if player is moving
 
-        if (Input.GetAxis("Horizontal") < 0 && facingRight)
+        if (Input.GetAxis("Horizontal") < 0)
         {
-            Flip();
+            Flip("left");
         }
-        else if (Input.GetAxis("Horizontal") > 0 && !facingRight)
+        else if (Input.GetAxis("Horizontal") > 0)
         {
-            Flip();
+            Flip("right");
         } // Flips the character according to movement input
 
         if (Input.GetButtonDown("Jump") && onGround)
@@ -135,14 +137,21 @@ public class PlayerMovement : MonoBehaviour {
         } // Detect if not on ground
     }
 
-    private void Flip()
+    private void Flip(string direction)
     {
         // Switch the way the player is labelled as facing.
-        facingRight = !facingRight;
-
+        if (direction == "left" && facingRight || direction == "right" && !facingRight)
+        {
+            facingRight = !facingRight;
+        }
+        
+        if (direction == "left" && transform.localScale.x == 1 || direction == "right" && transform.localScale.x == -1)
+        {
+            Vector3 theScale = transform.localScale;
+            theScale.x *= -1;
+            transform.localScale = theScale;
+        }
         // Multiply the player's x local scale by -1.
-        Vector3 theScale = transform.localScale;
-        theScale.x *= -1;
-        transform.localScale = theScale;
+        
     }
 }
