@@ -51,7 +51,9 @@ To do:
   Get sprites implemented
       Add lighting to sprites
       Add additional sprites for jumping and crouching
+      Add sprites and animation for enemies
   Balance movement, enemies, etc.
 
 Bugs:
   Extreme velocity on terrain will cause player to go through floor.
+  Holding left as you respawn causes player sprite to face incorrectly
