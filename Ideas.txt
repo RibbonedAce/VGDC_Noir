@@ -49,10 +49,10 @@ FUTURE PLANS:
 
 To do:
   Get sprites implemented
-      Add lighting to sprites
       Add additional sprites for jumping and crouching
       Add sprites and animation for enemies
   Balance movement, enemies, etc.
+  Adjust collider to better match size and shape of sprite
 
 Bugs:
   Extreme velocity of an object to terrain will make object phase through terrain
