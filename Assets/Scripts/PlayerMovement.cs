@@ -14,11 +14,14 @@ public class PlayerMovement : MonoBehaviour {
     public static bool cameraMoved = false;
     public static bool isMoving;
     public static bool facingRight = true;
+    public AudioSource _jump;
 
 	// Use this for initialization
 	void Start ()
     {
         _animator = GetComponent<Animator>();
+
+        _jump = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -43,10 +46,7 @@ public class PlayerMovement : MonoBehaviour {
 
             if (Input.GetButtonDown("Jump"))
             {
-                onLadder = false;
-                GetComponent<Rigidbody2D>().AddForce(Vector3.up * jumpHeight);
-
-                GameObject.FindWithTag("MainCamera").GetComponent<PlayerTracking>().reset();
+                Jump();
             } // Jump off ladder
         } // Player behavior on ladder
         else
@@ -106,13 +106,8 @@ public class PlayerMovement : MonoBehaviour {
 
         if (Input.GetButtonDown("Jump") && onGround)
         {
-            GetComponent<Rigidbody2D>().AddForce(Vector3.up * jumpHeight);
-            onGround = false;
-            isCrouching = false;
-            isLooking = false;
-
-            GameObject.FindWithTag("MainCamera").GetComponent<PlayerTracking>().reset();
-        } // jump
+            Jump();
+        } // jump and play sound
 
         transform.rotation = Quaternion.Euler(0, 0, 0);
 
@@ -153,5 +148,18 @@ public class PlayerMovement : MonoBehaviour {
         }
         // Multiply the player's x local scale by -1.
         
+    }
+
+    void Jump()
+    {
+        _jump.Play();
+
+        GetComponent<Rigidbody2D>().AddForce(Vector3.up * jumpHeight);
+
+        onGround = false;
+        isCrouching = false;
+        isLooking = false;
+
+        GameObject.FindWithTag("MainCamera").GetComponent<PlayerTracking>().reset();
     }
 }

@@ -53,6 +53,8 @@ To do:
       Add sprites and animation for enemies
   Balance movement, enemies, etc.
   Adjust collider to better match size and shape of sprite
+  Implement sounds
 
 Bugs:
   Extreme velocity of an object to terrain will make object phase through terrain
+  Jumping off ladder jumps higher than jumping on ground
