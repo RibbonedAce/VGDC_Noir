@@ -52,7 +52,6 @@ To do:
       Add additional sprites for jumping and crouching
       Add sprites and animation for enemies
   Balance movement, enemies, etc.
-  Adjust collider to better match size and shape of sprite
   Implement sounds
 
 Bugs:

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class Journal : MonoBehaviour {
     public static bool inJournal = false;
-    private bool paused = false;
+    public static bool paused = false;
     public static List<string> pageContent;
     public static int page;
 
