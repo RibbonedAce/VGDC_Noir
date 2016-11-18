@@ -37,11 +37,19 @@ public class EnemySimple : MonoBehaviour {
 
         if (cone.detectsPlayer) // if he sees the player, be alerted
         {
+            if (alertTime == 0)
+            {
+                GetComponent<AudioSource>().Play();
+            }
             alertTime = alertDuration;
             breaks = true;
         }
         if(cone.detectsShadow) // if he sees the shadow, be alerted differently
         {
+            if (alertTime == 0)
+            {
+                GetComponent<AudioSource>().Play();
+            }
             shadowTime = alertDuration;
             breaks = true;
         }

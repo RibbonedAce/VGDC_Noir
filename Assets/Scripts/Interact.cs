@@ -5,11 +5,12 @@ public class Interact : MonoBehaviour {
     public string LeftText;
     public string RightText;
     public bool canInteract = false;
+    private AudioSource sound;
 
 	// Use this for initialization
 	void Start ()
     {
-	
+        sound = GameObject.Find("Coin Sound Holder").GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -17,12 +18,15 @@ public class Interact : MonoBehaviour {
     {
         if (Input.GetButtonDown("Interact") && canInteract)
         {
+            sound.Play();
+
             if (LeftText != "" || RightText != "")
             {
                 AddPage();
             }
+
             Destroy(gameObject);
-        } // Make object vanish
+        } // Interact with object
     }
 
     void OnTriggerEnter2D (Collider2D other)
