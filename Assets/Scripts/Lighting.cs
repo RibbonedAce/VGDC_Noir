@@ -1,22 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Lighting : MonoBehaviour {
     public static bool playerInLight;
     public static bool shadowInLight;
-    public static int shadowLightsIn;
-    public static int playerLightsIn;
+    public static List<GameObject> playerActiveLights;
+    public static List<GameObject> shadowActiveLights;
 
 	// Use this for initialization
 	void Start ()
     {
-        
+        playerActiveLights = new List<GameObject>();
+        shadowActiveLights = new List<GameObject>();
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-        if (shadowLightsIn > 0)
+        Debug.Log(playerActiveLights.Count);
+
+        if (shadowActiveLights.Count > 0)
         {
             shadowInLight = true;
         }
@@ -25,7 +29,7 @@ public class Lighting : MonoBehaviour {
             shadowInLight = false;
         }
 
-        if (playerLightsIn > 0)
+        if (playerActiveLights.Count > 0)
         {
             playerInLight = true;
         }
@@ -35,15 +39,21 @@ public class Lighting : MonoBehaviour {
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerStay2D(Collider2D other)
     {
         if (other.CompareTag("Shadow"))
         {
-            shadowLightsIn++;
+            if (!shadowActiveLights.Contains(gameObject))
+            {
+                shadowActiveLights.Add(gameObject);
+            }
         }
         if (other.CompareTag("PlayerCharacter"))
         {
-            playerLightsIn++;
+            if (!playerActiveLights.Contains(gameObject))
+            {
+                playerActiveLights.Add(gameObject);
+            }
         } 
     }
 
@@ -51,11 +61,18 @@ public class Lighting : MonoBehaviour {
     {
         if (other.CompareTag("Shadow"))
         {
-            shadowLightsIn--;
+            if (shadowActiveLights.Contains(gameObject))
+            {
+                shadowActiveLights.Remove(gameObject);
+            }
         }
         if (other.CompareTag("PlayerCharacter"))
         {
-            playerLightsIn--;
+            if (playerActiveLights.Contains(gameObject))
+            {
+                playerActiveLights.Remove(gameObject);
+            }
         }
-    }
-} // track the amount of lighting objects that the player/shadow is in
+    }// track the amount of lighting objects that the player/shadow is in
+
+}

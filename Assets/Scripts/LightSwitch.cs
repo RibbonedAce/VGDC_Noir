@@ -33,7 +33,7 @@ public class LightSwitch: MonoBehaviour {
             {
                 light.GetComponent<Light>().intensity = 0;
                 light.GetComponentInChildren<PolygonCollider2D>().enabled = false;
-                Lighting.shadowLightsIn = 0;
+                Lighting.shadowActiveLights.Clear();
             } // turn on
         }
     }

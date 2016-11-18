@@ -27,8 +27,6 @@ public class PlayerMovement : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
-        Debug.Log(facingRight);
-
         Rigidbody2D _rigidbody = GetComponent<Rigidbody2D>();
 
         if (onLadder)
