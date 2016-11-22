@@ -18,8 +18,6 @@ public class Lighting : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        Debug.Log(playerActiveLights.Count);
-
         if (shadowActiveLights.Count > 0)
         {
             shadowInLight = true;

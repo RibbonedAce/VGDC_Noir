@@ -16,7 +16,7 @@ public class Journal : MonoBehaviour {
         pageContent.Add("My Journal");
         pageContent.Add("Left/right in journal to flip through pages");
         pageContent.Add("A/D: move\nSpace: jump\nE: interact with object");
-        pageContent.Add("Don't get spotted by enemies.");
+        pageContent.Add("Don't get spotted by enemies.\nPicking up coins adds more pages.");
 
         page = 0;
         // set the default text

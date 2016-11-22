@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour {
 
@@ -18,11 +18,11 @@ public class Menu : MonoBehaviour {
 
     public void clickStart()
     {
-        Debug.Log("Start");
+        SceneManager.LoadScene(1);
     }
 
     public void clickQuit()
     {
-        Debug.Log("Quit");
+        Application.Quit();
     }
 }
