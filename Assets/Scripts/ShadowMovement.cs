@@ -4,6 +4,8 @@ using System.Collections;
 public class ShadowMovement : MonoBehaviour {
     public float speed;
     public static bool isMoving;
+    public static Vector3 leftBound;
+    public static Vector3 rightBound;
 
 	// Use this for initialization
 	void Start ()
@@ -30,6 +32,15 @@ public class ShadowMovement : MonoBehaviour {
             {
                 isMoving = false;
             }
+        }
+
+        if (transform.position.x > rightBound.x)
+        {
+            transform.position = new Vector3(rightBound.x, transform.position.y, transform.position.z);
+        }
+        else if (transform.position.x < leftBound.x)
+        {
+            transform.position = new Vector3(leftBound.x, transform.position.y, transform.position.z);
         }
     }
 }

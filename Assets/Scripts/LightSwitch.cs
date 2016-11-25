@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class LightSwitch: MonoBehaviour {
-    public GameObject[] lights;
+    public GameObject lights;
     public bool on = true;
 
 	// Use this for initialization
@@ -22,19 +22,13 @@ public class LightSwitch: MonoBehaviour {
     {
         on = !on;
 
-        foreach (GameObject light in lights)
+        if (on)
         {
-            if (on)
-            {
-                light.GetComponent<Light>().intensity = 8;
-                light.GetComponentInChildren<PolygonCollider2D>().enabled = true;
-            } // turn off
-            else
-            {
-                light.GetComponent<Light>().intensity = 0;
-                light.GetComponentInChildren<PolygonCollider2D>().enabled = false;
-                Lighting.shadowActiveLights.Clear();
-            } // turn on
-        }
+            lights.GetComponentInChildren<Light>().intensity = 8;
+        } // turn off
+        else
+        {
+            lights.GetComponentInChildren<Light>().intensity = 0;
+        } // turn on
     }
 }

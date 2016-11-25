@@ -41,7 +41,7 @@ public class VisionCone : MonoBehaviour {
                     {
                         detectsPlayer = true;
                     }
-                    if (other.CompareTag("Shadow") && Lighting.shadowInLight)
+                    if (other.CompareTag("Shadow"))
                     {
                         detectsShadow = true;
                     }
@@ -53,7 +53,7 @@ public class VisionCone : MonoBehaviour {
                 {
                     detectsPlayer = true;
                 }
-                if (other.CompareTag("Shadow") && Lighting.shadowInLight)
+                if (other.CompareTag("Shadow"))
                 {
                     detectsShadow = true;
                 }
@@ -71,7 +71,7 @@ public class VisionCone : MonoBehaviour {
                     {
                         detectsPlayer = true;
                     }
-                    if (other.CompareTag("Shadow") && Lighting.shadowInLight)
+                    if (other.CompareTag("Shadow"))
                     {
                         detectsShadow = true;
                     }
@@ -83,7 +83,7 @@ public class VisionCone : MonoBehaviour {
                 {
                     detectsPlayer = true;
                 }
-                if (other.CompareTag("Shadow") && Lighting.shadowInLight)
+                if (other.CompareTag("Shadow"))
                 {
                     detectsShadow = true;
                 }

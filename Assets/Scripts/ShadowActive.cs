@@ -18,20 +18,23 @@ public class ShadowActive : MonoBehaviour {
         // Don't collide with objects
         SpriteRenderer _sprite = GetComponent<SpriteRenderer>();
 
-        if (PlayerMovement.onGround)
-        {
-            _sprite.enabled = true;
-        } 
-        else
-        {
-            _sprite.enabled = false;
-        } // Don't show shadow if player is in air
-
         if (!Switch.isShadow)
         {
-            transform.position = master.transform.position + new Vector3(0, -1.5f, 0);
+            if (transform.position.x > ShadowMovement.rightBound.x)
+            {
+                transform.position = new Vector3(ShadowMovement.rightBound.x, transform.position.y, transform.position.z);
+            }
+            else if (transform.position.x < ShadowMovement.leftBound.x)
+            {
+                transform.position = new Vector3(ShadowMovement.leftBound.x, transform.position.y, transform.position.z);
+            }
+            else
+            {
+                transform.position = master.transform.position + new Vector3(0, -1.5f, 0);
+            }
+
             transform.rotation = Quaternion.Euler(0, 0, 0);
             inWall = false;
-        } // Put shadow under player
+        } // Put shadow under player, enforce bounds
     }
 }
