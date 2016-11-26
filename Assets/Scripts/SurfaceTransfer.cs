@@ -41,7 +41,7 @@ public class SurfaceTransfer : MonoBehaviour {
 
     void OnCollisionEnter2D (Collision2D other)
     {
-        if (other.gameObject.CompareTag("Shadow"))
+        if (other.gameObject.CompareTag("Shadow") && Switch.isShadow)
         {
             moveTimer += 1;
 

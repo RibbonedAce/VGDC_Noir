@@ -13,9 +13,9 @@ public class Switch : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        GameObject shadow = GameObject.FindWithTag("Shadow");
+        Debug.Log(PlayerMovement.isMoving);
 
-        float difference = (transform.position - shadow.transform.position).magnitude;
+        GameObject shadow = GameObject.FindWithTag("Shadow");
 
         ShadowMovement shadowMove = shadow.GetComponent<ShadowMovement>();
         PlayerMovement movement = GetComponent<PlayerMovement>();
@@ -35,6 +35,8 @@ public class Switch : MonoBehaviour {
                 movement.enabled = false;
                 shadowMove.enabled = true;
                 PlayerTracking.tagSearch = "Shadow";
+                PlayerMovement.isMoving = false;
+                movement.reAnimate();
             } // Switch to shadow
         }
 

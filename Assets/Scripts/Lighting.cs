@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class Lighting : MonoBehaviour {
     public static bool playerInLight;
-    public static GameObject activeArea;
+    public static GameObject activeArea = null;
     public bool isOn = true;
     public GameObject startPos;
     public GameObject endPos;
@@ -26,14 +26,22 @@ public class Lighting : MonoBehaviour {
             {
                 activeArea = null;
             }
-        }// Set lighting area if on, remove it if off
+        }// Set lighting area if on, remove if turned off
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerStay2D(Collider2D other)
     {
-        if (isOn)
+        if (other.CompareTag("PlayerCharacter") && isOn && activeArea == null)
         {
             activeArea = gameObject;
         }
-    }
+    }// Set lighting to area if none already assigned
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("PlayerCharacter"))
+        {
+            activeArea = null;
+        }
+    }// Remove active area if left
 }

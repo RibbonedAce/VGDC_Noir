@@ -25,8 +25,8 @@ Shadow:
     R: kill enemy if under them
     L-shift: Switch back to detective
   Mechanics: 
-    Can only move a radius away from the Detective before changing back automatically
-    Can only pass through lit areas
+    Exists in last visited light areas
+    Has bounds for each light area it can't go past until the player goes into another light area
     Can execute enemies while detective can't
     If enemies see only shadow, they will turn off lights and not give chase
 
@@ -57,3 +57,4 @@ To do:
 Bugs:
   Extreme velocity of an object to terrain will make object phase through terrain
   Jumping off ladder jumps higher than jumping on ground
+  Shadow doesn't always stick to ground

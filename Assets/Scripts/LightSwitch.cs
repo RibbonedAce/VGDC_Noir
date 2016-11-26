@@ -24,11 +24,17 @@ public class LightSwitch: MonoBehaviour {
 
         if (on)
         {
-            lights.GetComponentInChildren<Light>().intensity = 8;
+            foreach (Light l in lights.GetComponentsInChildren<Light>())
+            {
+                l.intensity = 8;
+            }
         } // turn off
         else
         {
-            lights.GetComponentInChildren<Light>().intensity = 0;
+            foreach (Light l in lights.GetComponentsInChildren<Light>())
+            {
+                l.intensity = 0;
+            }
         } // turn on
     }
 }

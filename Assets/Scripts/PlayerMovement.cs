@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour {
     public static bool cameraMoved = false;
     public static bool isMoving;
     public static bool facingRight = true;
-    public AudioSource _jump;
+    private AudioSource _jump;
 
 	// Use this for initialization
 	void Start ()
@@ -50,6 +50,11 @@ public class PlayerMovement : MonoBehaviour {
         else
         {
             _rigidbody.gravityScale = gravity;
+
+            if (onGround)
+            {
+                ShadowActive.Attach();
+            }
 
             if (Input.GetAxis("Vertical") == -1 && onGround)
             {
@@ -109,10 +114,16 @@ public class PlayerMovement : MonoBehaviour {
 
         transform.rotation = Quaternion.Euler(0, 0, 0);
 
+        reAnimate();
+	}
+
+    public void reAnimate()
+    {
         _animator.SetBool("Walking", isMoving);
         _animator.SetBool("Crouching", isCrouching);
         _animator.SetBool("Looking", isLooking);
-	}
+    }
+
 
     void OnCollisionStay2D(Collision2D other)
     {
