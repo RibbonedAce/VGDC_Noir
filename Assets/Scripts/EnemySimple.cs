@@ -151,11 +151,6 @@ public class EnemySimple : MonoBehaviour {
             } // turn off switch if close
         }
 
-        if (Mathf.Abs(shadow.position.x - transform.position.x) < 0.5 && transform.position.y - shadow.position.y <= 0.5f + shadow.localScale.y + transform.localScale.y && Input.GetButtonDown("Kill"))
-        {
-            Destroy(gameObject);
-        } // die under certain circumstances
-
         _animator.SetBool("Calm", alertTime <= 0 && shadowTime <= 0);
         _animator.SetBool("Alert", alertTime > 0);
         _animator.SetBool("Switching", alertTime <= 0 && shadowTime > 0);
@@ -171,6 +166,10 @@ public class EnemySimple : MonoBehaviour {
             {
                 Condition.lost = true;
             } // be alerted if player is touched
+        }
+        else if (other.gameObject.CompareTag("Projectile"))
+        {
+            Destroy(gameObject);
         }
     }
 }
