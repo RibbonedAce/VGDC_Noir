@@ -14,14 +14,15 @@ public class PlayerMovement : MonoBehaviour {
     public static bool cameraMoved = false;
     public static bool isMoving;
     public static bool facingRight = true;
-    private AudioSource _jump;
+    private AudioSource _sound;
+    public AudioClip jumpSound;
 
 	// Use this for initialization
 	void Start ()
     {
         _animator = GetComponent<Animator>();
 
-        _jump = GetComponent<AudioSource>();
+        _sound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -161,7 +162,8 @@ public class PlayerMovement : MonoBehaviour {
 
     void Jump()
     {
-        _jump.Play();
+        _sound.clip = jumpSound;
+        _sound.Play();
 
         GetComponent<Rigidbody2D>().AddForce(Vector3.up * jumpHeight);
 
