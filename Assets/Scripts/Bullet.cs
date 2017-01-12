@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        PublicFunctions.PhaseThruTag(gameObject, new string[] { "PlayerCharacter" });
     }
 
     // Update is called once per frame
@@ -19,6 +19,7 @@ public class Bullet : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
+        if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Transfer") || other.gameObject.CompareTag("Wall"))
         Destroy(gameObject);
     }
 }
