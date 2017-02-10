@@ -15,6 +15,7 @@ public class EnemySimple : MonoBehaviour {
     private Vector3 start;
     private bool breaks = false;
     public static float jumpHeight = 2000;
+    public bool moving;
 
 	// Use this for initialization
 	void Start ()
@@ -63,16 +64,19 @@ public class EnemySimple : MonoBehaviour {
                 if (goOriginal < -0.1f)
                 {
                     transform.rotation = Quaternion.Euler(0, 0, 0);
+                    moving = true;
                     transform.Translate(Vector3.left * Time.deltaTime * speed / 2);
                 }
                 else if (goOriginal > 0.1f)
                 {
-                    transform.rotation = Quaternion.Euler(0, 0, 180);
+                    transform.rotation = Quaternion.Euler(0, 180, 0);
+                    moving = true;
                     transform.Translate(Vector3.left * Time.deltaTime * speed / 2);
                 }
                 else
                 {
                     breaks = false;
+                    moving = false;
                     goingLeft = startsLeft;
                     paceTime = paceLength / speed;
                 } //go back to original spot and start pathing again
@@ -82,11 +86,13 @@ public class EnemySimple : MonoBehaviour {
                 if (paceTime >= 0)
                 {
                     paceTime -= Time.deltaTime;
+                    moving = true;
                     transform.Translate(Vector3.left * Time.deltaTime * speed / 2);
                 } //pace left
                 else if (paceTime < 0 && paceTime >= -pacePause)
                 {
                     paceTime -= Time.deltaTime;
+                    moving = false;
                 }
                 else
                 {
@@ -100,7 +106,7 @@ public class EnemySimple : MonoBehaviour {
                 }
                 else
                 {
-                    transform.rotation = Quaternion.Euler(0, 0, 180);
+                    transform.rotation = Quaternion.Euler(0, 180, 0);
                 }
             }
         }
@@ -108,15 +114,20 @@ public class EnemySimple : MonoBehaviour {
         {
             if (difference >= 0.5)
             {
-                transform.rotation = Quaternion.Euler(0, 0, 180);
+                transform.rotation = Quaternion.Euler(0, 180, 0);
+                moving = true;
                 transform.Translate(Vector3.left * Time.deltaTime * speed);
             } // move to player if not close
             else if (difference <= -0.5)
             {
                 transform.rotation = Quaternion.Euler(0, 0, 0);
+                moving = true;
                 transform.Translate(Vector3.left * Time.deltaTime * speed);
             } // stop if close to player
-
+            else
+            {
+                moving = false;
+            }
             
             alertTime -= Time.deltaTime;
         }
@@ -124,7 +135,7 @@ public class EnemySimple : MonoBehaviour {
         {
             if (switchDifference >= 0)
             {
-                transform.rotation = Quaternion.Euler(0, 0, 180);
+                transform.rotation = Quaternion.Euler(0, 180, 0);
             }
             else
             {
@@ -133,8 +144,13 @@ public class EnemySimple : MonoBehaviour {
 
             if(CloseSwitch.GetComponent<LightSwitch>().on)
             {
+                moving = true;
                 transform.Translate(Vector3.left * Time.deltaTime * speed);
             }  // go to switch
+            else
+            {
+                moving = false;
+            }
 
             shadowTime -= Time.deltaTime;
 
@@ -151,9 +167,7 @@ public class EnemySimple : MonoBehaviour {
             } // turn off switch if close
         }
 
-        _animator.SetBool("Calm", alertTime <= 0 && shadowTime <= 0);
-        _animator.SetBool("Alert", alertTime > 0);
-        _animator.SetBool("Switching", alertTime <= 0 && shadowTime > 0);
+        _animator.SetBool("Moving", moving);
 	}
 
     void OnCollisionEnter2D(Collision2D other)
