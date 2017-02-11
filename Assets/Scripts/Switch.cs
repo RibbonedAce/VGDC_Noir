@@ -13,8 +13,6 @@ public class Switch : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        Debug.Log(PlayerMovement.isMoving);
-
         GameObject shadow = GameObject.FindWithTag("Shadow");
 
         ShadowMovement shadowMove = shadow.GetComponent<ShadowMovement>();

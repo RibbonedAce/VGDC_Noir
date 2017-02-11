@@ -43,6 +43,7 @@ public class EnemySimple : MonoBehaviour {
                 GetComponent<AudioSource>().Play();
             }
             alertTime = alertDuration;
+            print("Found player");
             breaks = true;
         }
         if(cone.detectsShadow) // if he sees the shadow, be alerted differently
@@ -109,6 +110,8 @@ public class EnemySimple : MonoBehaviour {
                     transform.rotation = Quaternion.Euler(0, 180, 0);
                 }
             }
+
+            GetComponentInChildren<AlertDisplay>().alerted = false;
         }
         else if (alertTime > 0)
         {
@@ -128,7 +131,8 @@ public class EnemySimple : MonoBehaviour {
             {
                 moving = false;
             }
-            
+
+            GetComponentInChildren<AlertDisplay>().alerted = true;
             alertTime -= Time.deltaTime;
         }
         else if (shadowTime > 0)
@@ -165,8 +169,10 @@ public class EnemySimple : MonoBehaviour {
                     CloseSwitch.GetComponent<LightSwitch>().Turn();
                 }
             } // turn off switch if close
+            GetComponentInChildren<AlertDisplay>().alerted = true;
         }
 
+        
         _animator.SetBool("Moving", moving);
 	}
 

@@ -34,6 +34,7 @@ public class Lighting : MonoBehaviour {
         if (other.CompareTag("PlayerCharacter") && isOn && activeArea == null)
         {
             activeArea = gameObject;
+            playerInLight = true;
         }
     }// Set lighting to area if none already assigned
 
@@ -42,6 +43,7 @@ public class Lighting : MonoBehaviour {
         if (other.CompareTag("PlayerCharacter"))
         {
             activeArea = null;
+            playerInLight = false;
         }
     }// Remove active area if left
 }
